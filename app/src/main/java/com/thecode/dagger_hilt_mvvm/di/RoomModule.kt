@@ -1,7 +1,9 @@
-package com.thecode.dagger_hilt_mvvm.room
+package com.thecode.dagger_hilt_mvvm.di
 
 import android.content.Context
 import androidx.room.Room
+import com.thecode.dagger_hilt_mvvm.room.BlogDao
+import com.thecode.dagger_hilt_mvvm.room.BlogDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -11,11 +13,11 @@ import javax.inject.Singleton
 
 @InstallIn(ApplicationComponent::class)
 @Module
-class   RoomModule {
+object RoomModule {
 
     @Singleton
     @Provides
-    fun provideBlogDb(@ApplicationContext context: Context): BlogDatabase{
+    fun provideBlogDb(@ApplicationContext context: Context): BlogDatabase {
         return Room.databaseBuilder(
             context, BlogDatabase::class.java,
             BlogDatabase.DATABASE_NAME
@@ -26,7 +28,7 @@ class   RoomModule {
 
     @Singleton
     @Provides
-    fun provideBlogDAO(blogDatabase: BlogDatabase): BlogDao{
+    fun provideBlogDAO(blogDatabase: BlogDatabase): BlogDao {
         return blogDatabase.blogDao()
     }
 }
