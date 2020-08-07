@@ -1,7 +1,8 @@
-package com.thecode.dagger_hilt_mvvm
+package com.thecode.dagger_hilt_mvvm.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.thecode.dagger_hilt_mvvm.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
