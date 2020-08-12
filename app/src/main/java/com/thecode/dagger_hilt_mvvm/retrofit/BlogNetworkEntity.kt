@@ -8,19 +8,19 @@ data class BlogNetworkEntity (
     @Expose
     var id: Int,
 
-    @SerializedName("pk")
+    @SerializedName("title")
     @Expose
     var title: String,
 
-    @SerializedName("pk")
+    @SerializedName("body")
     @Expose
     var body: String,
 
-    @SerializedName("pk")
+    @SerializedName("category")
     @Expose
     var category: String,
 
-    @SerializedName("pk")
+    @SerializedName("image")
     @Expose
     var image: String
 )
