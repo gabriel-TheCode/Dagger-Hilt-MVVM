@@ -2,43 +2,49 @@ package com.thecode.dagger_hilt_mvvm.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.thecode.dagger_hilt_mvvm.R
 import com.thecode.dagger_hilt_mvvm.model.Blog
 import com.thecode.dagger_hilt_mvvm.util.DataState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import java.lang.StringBuilder
 
 @ExperimentalCoroutinesApi
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), BlogAdapter.BlogItemListener{
     private val TAG: String = "AppDebug"
     private val viewModel: MainViewModel by viewModels()
+    private lateinit var adapter: BlogAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        setupRecyclerView()
         subscribeObservers()
         viewModel.setStateEvent(MainStateEvent.GetBlogEvents)
+
+        swipeRefreshLayout.setOnRefreshListener {
+            viewModel.setStateEvent(MainStateEvent.GetBlogEvents)
+        }
+
     }
 
     private fun subscribeObservers(){
         viewModel.dataState.observe(this, Observer{ dataState ->
             when(dataState){
                 is DataState.Success<List<Blog>> -> {
-                   displayProgressBar(false)
-                    appendBlogTitles(dataState.data)
+                   displayLoading(false)
+                    populateRecyclerView(dataState.data)
                 }
                 is DataState.Loading ->{
-                    displayProgressBar(true)
+                    displayLoading(true)
                 }
                 is DataState.Error ->{
-                    displayProgressBar(false)
+                    displayLoading(false)
                     displayError(dataState.exception.message)
                 }
             }
@@ -48,23 +54,28 @@ class MainActivity : AppCompatActivity() {
 
     private fun displayError(message: String?){
         if(message != null){
-            text.text
+            Toast.makeText(this, message, Toast.LENGTH_LONG).show()
         }else{
-            text.text = "Unknown error"
+            Toast.makeText(this, "Unknown error", Toast.LENGTH_LONG).show()
         }
     }
 
-    private fun displayProgressBar(isDisplayed: Boolean){
-        progress_bar.visibility = if(isDisplayed) View.VISIBLE else View.GONE
+    private fun displayLoading(isLoading: Boolean){
+        swipeRefreshLayout.isRefreshing = isLoading
     }
 
-    private fun appendBlogTitles(blogs: List<Blog>){
-        val sb = StringBuilder()
-        for(blog in blogs){
-            sb.append(blog.title + "\n")
-        }
-        text.text = sb.toString()
+    private fun populateRecyclerView(blogs: List<Blog>){
+        if (!blogs.isNullOrEmpty()) adapter.setItems(ArrayList(blogs))
     }
 
+    private fun setupRecyclerView() {
+        adapter = BlogAdapter(this)
+        blog_recyclerview.layoutManager = LinearLayoutManager(this)
+        blog_recyclerview.adapter = adapter
+    }
+
+    override fun onClickedBlog(blogTitle: CharSequence) {
+        Toast.makeText(this, blogTitle, Toast.LENGTH_SHORT).show()
+    }
 
 }

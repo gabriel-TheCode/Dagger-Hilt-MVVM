@@ -24,7 +24,6 @@ class MainViewModel
     fun setStateEvent(mainStateEvent: MainStateEvent){
         viewModelScope.launch {
             when(mainStateEvent){
-
                 is MainStateEvent.GetBlogEvents ->{
                     mainRepository.getBlog()
                         .onEach { dataState ->
