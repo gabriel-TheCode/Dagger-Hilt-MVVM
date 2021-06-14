@@ -1,6 +1,5 @@
 package com.thecode.dagger_hilt_mvvm.ui
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,7 +29,7 @@ class BlogAdapter(private val listener: BlogItemListener) : RecyclerView.Adapter
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BlogViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_blog,parent,false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_blog, parent, false)
         return BlogViewHolder(view, listener)
     }
 
@@ -51,13 +50,15 @@ class BlogAdapter(private val listener: BlogItemListener) : RecyclerView.Adapter
 
 }
 
-class BlogViewHolder(itemView: View, private val listener: BlogAdapter.BlogItemListener) : RecyclerView.ViewHolder(itemView),
+class BlogViewHolder(itemView: View, private val listener: BlogAdapter.BlogItemListener) :
+    RecyclerView.ViewHolder(itemView),
     View.OnClickListener {
 
     val itemLayout: ConstraintLayout = itemView.blog_layout
     val textTitle: TextView = itemView.text_title
     val textDescription: TextView = itemView.text_description
     val image: AppCompatImageView = itemView.image
+
     init {
         itemLayout.setOnClickListener(this)
     }

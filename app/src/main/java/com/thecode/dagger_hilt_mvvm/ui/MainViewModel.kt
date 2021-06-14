@@ -11,20 +11,20 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 
 class MainViewModel
-    @ViewModelInject
-    constructor(
-        private val mainRepository: MainRepository,
-        @Assisted private val savedStateHandle: SavedStateHandle
-    ): ViewModel(){
-        private val _dataState: MutableLiveData<DataState<List<Blog>>> = MutableLiveData()
+@ViewModelInject
+constructor(
+    private val mainRepository: MainRepository,
+    @Assisted private val savedStateHandle: SavedStateHandle
+) : ViewModel() {
+    private val _dataState: MutableLiveData<DataState<List<Blog>>> = MutableLiveData()
 
-        val dataState: LiveData<DataState<List<Blog>>>
-            get() = _dataState
+    val dataState: LiveData<DataState<List<Blog>>>
+        get() = _dataState
 
-    fun setStateEvent(mainStateEvent: MainStateEvent){
+    fun setStateEvent(mainStateEvent: MainStateEvent) {
         viewModelScope.launch {
-            when(mainStateEvent){
-                is MainStateEvent.GetBlogEvents ->{
+            when (mainStateEvent) {
+                is MainStateEvent.GetBlogEvents -> {
                     mainRepository.getBlog()
                         .onEach { dataState ->
                             _dataState.value = dataState
@@ -32,7 +32,7 @@ class MainViewModel
                         .launchIn(viewModelScope)
                 }
 
-                is MainStateEvent.None ->{
+                is MainStateEvent.None -> {
                     // No action
                 }
             }
@@ -41,8 +41,8 @@ class MainViewModel
 }
 
 
-sealed class MainStateEvent{
-    object GetBlogEvents: MainStateEvent()
-    object None: MainStateEvent()
+sealed class MainStateEvent {
+    object GetBlogEvents : MainStateEvent()
+    object None : MainStateEvent()
 }
 

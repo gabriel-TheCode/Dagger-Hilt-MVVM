@@ -9,19 +9,19 @@ data class BlogCacheEntity(
 
     @PrimaryKey(autoGenerate = false)
     @ColumnInfo(name = "id")
-    var id : Int,
+    var id: Int,
 
     @ColumnInfo(name = "title")
-    var title : String,
+    var title: String,
 
     @ColumnInfo(name = "body")
-    var body : String,
+    var body: String,
 
     @ColumnInfo(name = "category")
-    var category : String,
+    var category: String,
 
     @ColumnInfo(name = "image")
-    var image : String
+    var image: String
 
 
 )

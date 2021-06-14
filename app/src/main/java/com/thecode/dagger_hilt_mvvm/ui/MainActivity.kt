@@ -1,9 +1,9 @@
 package com.thecode.dagger_hilt_mvvm.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.thecode.dagger_hilt_mvvm.R
@@ -15,7 +15,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 @ExperimentalCoroutinesApi
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity(), BlogAdapter.BlogItemListener{
+class MainActivity : AppCompatActivity(), BlogAdapter.BlogItemListener {
     private val TAG: String = "AppDebug"
     private val viewModel: MainViewModel by viewModels()
     private lateinit var adapter: BlogAdapter
@@ -33,17 +33,17 @@ class MainActivity : AppCompatActivity(), BlogAdapter.BlogItemListener{
 
     }
 
-    private fun subscribeObservers(){
-        viewModel.dataState.observe(this, Observer{ dataState ->
-            when(dataState){
+    private fun subscribeObservers() {
+        viewModel.dataState.observe(this, Observer { dataState ->
+            when (dataState) {
                 is DataState.Success<List<Blog>> -> {
-                   displayLoading(false)
+                    displayLoading(false)
                     populateRecyclerView(dataState.data)
                 }
-                is DataState.Loading ->{
+                is DataState.Loading -> {
                     displayLoading(true)
                 }
-                is DataState.Error ->{
+                is DataState.Error -> {
                     displayLoading(false)
                     displayError(dataState.exception.message)
                 }
@@ -52,19 +52,19 @@ class MainActivity : AppCompatActivity(), BlogAdapter.BlogItemListener{
     }
 
 
-    private fun displayError(message: String?){
-        if(message != null){
+    private fun displayError(message: String?) {
+        if (message != null) {
             Toast.makeText(this, message, Toast.LENGTH_LONG).show()
-        }else{
+        } else {
             Toast.makeText(this, "Unknown error", Toast.LENGTH_LONG).show()
         }
     }
 
-    private fun displayLoading(isLoading: Boolean){
+    private fun displayLoading(isLoading: Boolean) {
         swipeRefreshLayout.isRefreshing = isLoading
     }
 
-    private fun populateRecyclerView(blogs: List<Blog>){
+    private fun populateRecyclerView(blogs: List<Blog>) {
         if (!blogs.isNullOrEmpty()) adapter.setItems(ArrayList(blogs))
     }
 

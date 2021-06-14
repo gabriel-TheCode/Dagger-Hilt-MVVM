@@ -1,7 +1,7 @@
 package com.thecode.dagger_hilt_mvvm.di
 
 import com.thecode.dagger_hilt_mvvm.repository.MainRepository
-import com.thecode.dagger_hilt_mvvm.retrofit.BlogRetrofit
+import com.thecode.dagger_hilt_mvvm.retrofit.BlogApi
 import com.thecode.dagger_hilt_mvvm.retrofit.NetworkMapper
 import com.thecode.dagger_hilt_mvvm.room.BlogDao
 import com.thecode.dagger_hilt_mvvm.room.CacheMapper
@@ -19,10 +19,10 @@ object RepositoryModule {
     @Provides
     fun provideMainRepository(
         blogDao: BlogDao,
-        blogRetrofit: BlogRetrofit,
+        blogApi: BlogApi,
         cacheMapper: CacheMapper,
         networkMapper: NetworkMapper
-    ): MainRepository{
-        return MainRepository(blogDao, blogRetrofit, cacheMapper, networkMapper)
+    ): MainRepository {
+        return MainRepository(blogDao, blogApi, cacheMapper, networkMapper)
     }
 }

@@ -6,7 +6,7 @@ import javax.inject.Inject
 
 class CacheMapper
 @Inject
-constructor(): EntityMapper<BlogCacheEntity, Blog>{
+constructor() : EntityMapper<BlogCacheEntity, Blog> {
     override fun mapFromEntity(entity: BlogCacheEntity): Blog {
         return Blog(
             id = entity.id,
@@ -27,7 +27,7 @@ constructor(): EntityMapper<BlogCacheEntity, Blog>{
         )
     }
 
-    fun mapFromEntityList(entities: List<BlogCacheEntity>): List<Blog>{
+    fun mapFromEntityList(entities: List<BlogCacheEntity>): List<Blog> {
         return entities.map { mapFromEntity(it) }
     }
 

@@ -5,9 +5,9 @@ import com.thecode.dagger_hilt_mvvm.util.EntityMapper
 import javax.inject.Inject
 
 class NetworkMapper
-    @Inject
-    constructor() : EntityMapper<BlogNetworkEntity, Blog> {
-    override fun mapFromEntity(entity: BlogNetworkEntity): Blog {
+@Inject
+constructor() : EntityMapper<BlogObjectResponse, Blog> {
+    override fun mapFromEntity(entity: BlogObjectResponse): Blog {
         return Blog(
             id = entity.id,
             title = entity.title,
@@ -17,8 +17,8 @@ class NetworkMapper
         )
     }
 
-    override fun mapToEntity(domainModel: Blog): BlogNetworkEntity {
-        return BlogNetworkEntity(
+    override fun mapToEntity(domainModel: Blog): BlogObjectResponse {
+        return BlogObjectResponse(
             id = domainModel.id,
             title = domainModel.title,
             body = domainModel.body,
@@ -27,7 +27,7 @@ class NetworkMapper
         )
     }
 
-    fun mapFromEntityList(entities: List<BlogNetworkEntity>): List<Blog>{
+    fun mapFromEntityList(entities: List<BlogObjectResponse>): List<Blog> {
         return entities.map { mapFromEntity(it) }
     }
 

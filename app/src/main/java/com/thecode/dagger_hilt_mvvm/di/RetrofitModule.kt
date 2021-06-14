@@ -2,7 +2,7 @@ package com.thecode.dagger_hilt_mvvm.di
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import com.thecode.dagger_hilt_mvvm.retrofit.BlogRetrofit
+import com.thecode.dagger_hilt_mvvm.retrofit.BlogApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -28,14 +28,14 @@ object RetrofitModule {
     fun provideRetrofit(gson: Gson): Retrofit.Builder {
         return Retrofit.Builder()
             .baseUrl("https://open-api.xyz/placeholder/")
-            .addConverterFactory(GsonConverterFactory.create(gson ))
+            .addConverterFactory(GsonConverterFactory.create(gson))
     }
 
     @Singleton
     @Provides
-    fun provideBlogService(retrofit: Retrofit.Builder): BlogRetrofit{
+    fun provideBlogService(retrofit: Retrofit.Builder): BlogApi {
         return retrofit
             .build()
-            .create(BlogRetrofit::class.java)
+            .create(BlogApi::class.java)
     }
 }

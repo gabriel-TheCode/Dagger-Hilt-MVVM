@@ -3,7 +3,7 @@ package com.thecode.dagger_hilt_mvvm.retrofit
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-data class BlogNetworkEntity (
+data class BlogObjectResponse(
     @SerializedName("pk")
     @Expose
     var id: Int,
