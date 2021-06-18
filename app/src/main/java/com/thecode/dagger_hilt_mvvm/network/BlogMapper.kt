@@ -1,10 +1,10 @@
-package com.thecode.dagger_hilt_mvvm.retrofit
+package com.thecode.dagger_hilt_mvvm.network
 
 import com.thecode.dagger_hilt_mvvm.model.Blog
 import com.thecode.dagger_hilt_mvvm.util.EntityMapper
 import javax.inject.Inject
 
-class NetworkMapper
+class BlogMapper
 @Inject
 constructor() : EntityMapper<BlogObjectResponse, Blog> {
     override fun mapFromEntity(entity: BlogObjectResponse): Blog {

@@ -1,4 +1,4 @@
-package com.thecode.dagger_hilt_mvvm.room
+package com.thecode.dagger_hilt_mvvm.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
@@ -8,6 +8,6 @@ abstract class BlogDatabase : RoomDatabase() {
     abstract fun blogDao(): BlogDao
 
     companion object {
-        val DATABASE_NAME: String = "blog_db"
+        const val DATABASE_NAME: String = "blog_db"
     }
 }

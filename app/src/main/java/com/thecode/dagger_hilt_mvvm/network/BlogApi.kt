@@ -1,4 +1,4 @@
-package com.thecode.dagger_hilt_mvvm.retrofit
+package com.thecode.dagger_hilt_mvvm.network
 
 import retrofit2.http.GET
 

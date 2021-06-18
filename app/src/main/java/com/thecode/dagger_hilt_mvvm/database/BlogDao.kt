@@ -1,4 +1,4 @@
-package com.thecode.dagger_hilt_mvvm.room
+package com.thecode.dagger_hilt_mvvm.database
 
 import androidx.room.Dao
 import androidx.room.Insert

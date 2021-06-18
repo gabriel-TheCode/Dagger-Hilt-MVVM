@@ -1,4 +1,4 @@
-package com.thecode.dagger_hilt_mvvm.retrofit
+package com.thecode.dagger_hilt_mvvm.network
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName

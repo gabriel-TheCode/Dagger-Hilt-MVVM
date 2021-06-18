@@ -2,8 +2,8 @@ package com.thecode.dagger_hilt_mvvm.di
 
 import android.content.Context
 import androidx.room.Room
-import com.thecode.dagger_hilt_mvvm.room.BlogDao
-import com.thecode.dagger_hilt_mvvm.room.BlogDatabase
+import com.thecode.dagger_hilt_mvvm.database.BlogDao
+import com.thecode.dagger_hilt_mvvm.database.BlogDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -13,7 +13,7 @@ import javax.inject.Singleton
 
 @InstallIn(ApplicationComponent::class)
 @Module
-object RoomModule {
+object DataModule {
 
     @Singleton
     @Provides

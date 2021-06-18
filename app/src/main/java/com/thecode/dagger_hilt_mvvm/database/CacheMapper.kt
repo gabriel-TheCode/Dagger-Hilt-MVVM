@@ -1,4 +1,4 @@
-package com.thecode.dagger_hilt_mvvm.room
+package com.thecode.dagger_hilt_mvvm.database
 
 import com.thecode.dagger_hilt_mvvm.model.Blog
 import com.thecode.dagger_hilt_mvvm.util.EntityMapper
