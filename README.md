@@ -16,9 +16,9 @@ Including:
 
  ## 🚀 MAD Scorecard
 
-<img src="https://github.com/gabriel-TheCode/Dagger-Hilt-MVVM/blob/master/mad_scorecard/summary.png" width="350"></img>
+<img src="https://github.com/gabriel-TheCode/Dagger-Hilt-MVVM/blob/master/mad_scorecard/summary.png" width="400"></img>
 
-<img src="https://github.com/gabriel-TheCode/Dagger-Hilt-MVVM/blob/master/mad_scorecard/kotlin.png" width="350"></img>
+<img src="https://github.com/gabriel-TheCode/Dagger-Hilt-MVVM/blob/master/mad_scorecard/kotlin.png" width="400"></img>
 
 <br/>
  
