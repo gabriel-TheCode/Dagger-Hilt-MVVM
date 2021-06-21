@@ -14,6 +14,7 @@ Including:
 
 <br>
 
+<hr>
  ## 🚀 Mad Scorecard
 
 <img src="https://github.com/gabriel-TheCode/Dagger-Hilt-MVVM/blob/master/mad_scorecard/summary.png"></img>
