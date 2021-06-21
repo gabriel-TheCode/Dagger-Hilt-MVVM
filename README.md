@@ -12,16 +12,15 @@ Including:
  * Retrofit
  * Room
 
-<br>
+<br/>
 
-<hr>
- ## 🚀 Mad Scorecard
+ ## 🚀 MAD Scorecard
 
-<img src="https://github.com/gabriel-TheCode/Dagger-Hilt-MVVM/blob/master/mad_scorecard/summary.png"></img>
+<img src="https://github.com/gabriel-TheCode/Dagger-Hilt-MVVM/blob/master/mad_scorecard/summary.png" width="300"></img>
 
-<img src="https://github.com/gabriel-TheCode/Dagger-Hilt-MVVM/blob/master/mad_scorecard/kotlin.png"></img>
+<img src="https://github.com/gabriel-TheCode/Dagger-Hilt-MVVM/blob/master/mad_scorecard/kotlin.png" width="300"></img>
 
-<br>
+<br/>
  
  ## You should also take a look at
  * [Guide to app architecture](https://developer.android.com/jetpack/guide)
