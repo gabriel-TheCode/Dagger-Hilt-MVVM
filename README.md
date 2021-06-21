@@ -11,10 +11,18 @@ Including:
  * Kotlin Coroutines
  * Retrofit
  * Room
+
+
+ ## 🚀 Mad Scorecard
+
+<img src="https://github.com/gabriel-TheCode/Dagger-Hilt-MVVM/blob/master/mad_scorecard/summary.png"></img>
+
+<img src="https://github.com/gabriel-TheCode/Dagger-Hilt-MVVM/blob/master/mad_scorecard/kotlin.png"></img>
+
+<br>
  
  ## You should also take a look at
  * [Guide to app architecture](https://developer.android.com/jetpack/guide)
  * [Kotlin Coroutines](https://developer.android.com/kotlin/coroutines)
  * [Android architecture samples](https://github.com/android/architecture-samples)
  * [Getting Started with HILT (Dagger2)](https://www.youtube.com/watch?v=zTpM2olXCok&t=350s)
-

@@ -7,5 +7,3 @@ data class Blog(
     var image: String,
     var category: String
 )
-
-
