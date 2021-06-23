@@ -16,7 +16,6 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 @ExperimentalCoroutinesApi
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(), BlogAdapter.BlogItemListener {
-    private val TAG: String = "AppDebug"
     private val viewModel: MainViewModel by viewModels()
     private lateinit var adapter: BlogAdapter
 
@@ -53,7 +52,7 @@ class MainActivity : AppCompatActivity(), BlogAdapter.BlogItemListener {
 
 
     private fun displayError(message: String?) {
-        if (message != null) {
+        if (message.isNullOrEmpty()) {
             Toast.makeText(this, message, Toast.LENGTH_LONG).show()
         } else {
             Toast.makeText(this, "Unknown error", Toast.LENGTH_LONG).show()
@@ -65,7 +64,7 @@ class MainActivity : AppCompatActivity(), BlogAdapter.BlogItemListener {
     }
 
     private fun populateRecyclerView(blogs: List<Blog>) {
-        if (!blogs.isNullOrEmpty()) adapter.setItems(ArrayList(blogs))
+        if (blogs.isNotEmpty()) adapter.setItems(ArrayList(blogs))
     }
 
     private fun setupRecyclerView() {

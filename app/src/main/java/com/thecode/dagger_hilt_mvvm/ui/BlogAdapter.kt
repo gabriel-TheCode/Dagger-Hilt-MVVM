@@ -20,7 +20,7 @@ class BlogAdapter(private val listener: BlogItemListener) : RecyclerView.Adapter
     }
 
     private val items = ArrayList<Blog>()
-    private lateinit var item: Blog
+    private lateinit var blog: Blog
 
     fun setItems(items: ArrayList<Blog>) {
         this.items.clear()
@@ -37,17 +37,16 @@ class BlogAdapter(private val listener: BlogItemListener) : RecyclerView.Adapter
 
 
     override fun onBindViewHolder(holder: BlogViewHolder, position: Int) {
-        holder.textTitle.text = items[position].title
-        holder.textDescription.text = items[position].body
-        Glide.with(holder.itemLayout).load(items[position].image)
+        blog = items[position]
+        val blog = items[position]
+        holder.textTitle.text = blog.title
+        holder.textDescription.text = blog.body
+        Glide.with(holder.itemLayout).load(blog.image)
             .placeholder(R.drawable.placeholder)
             .error(R.drawable.placeholder)
             .apply(RequestOptions().centerCrop())
             .into(holder.image)
-        item = items[position]
-
     }
-
 }
 
 class BlogViewHolder(itemView: View, private val listener: BlogAdapter.BlogItemListener) :
