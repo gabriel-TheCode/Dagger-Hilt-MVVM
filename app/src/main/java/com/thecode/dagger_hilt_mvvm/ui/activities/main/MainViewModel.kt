@@ -1,4 +1,4 @@
-package com.thecode.dagger_hilt_mvvm.ui
+package com.thecode.dagger_hilt_mvvm.ui.activities.main
 
 import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject

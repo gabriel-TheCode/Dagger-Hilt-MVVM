@@ -46,6 +46,7 @@ dependencies {
 
     // Hilt dependencies
     implementation "com.google.dagger:hilt-android:$hilt_version"
+    implementation 'com.google.android.material:material:1.4.0'
     kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
 
     // Hilt ViewModel extension

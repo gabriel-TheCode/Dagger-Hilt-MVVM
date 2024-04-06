@@ -1,4 +1,4 @@
-package com.thecode.dagger_hilt_mvvm.ui
+package com.thecode.dagger_hilt_mvvm.ui.activities.main
 
 import android.os.Bundle
 import android.widget.Toast
@@ -8,6 +8,8 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.thecode.dagger_hilt_mvvm.R
 import com.thecode.dagger_hilt_mvvm.model.Blog
+import com.thecode.dagger_hilt_mvvm.ui.BlogAdapter
+import com.thecode.dagger_hilt_mvvm.ui.activities.details.DetailsActivity
 import com.thecode.dagger_hilt_mvvm.util.DataState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
@@ -74,7 +76,7 @@ class MainActivity : AppCompatActivity(), BlogAdapter.BlogItemListener {
     }
 
     override fun onClickedBlog(blogTitle: CharSequence) {
-        Toast.makeText(this, blogTitle, Toast.LENGTH_SHORT).show()
+        startActivity(DetailsActivity.getDetailsIntent(this, blogTitle))
     }
 
 }
