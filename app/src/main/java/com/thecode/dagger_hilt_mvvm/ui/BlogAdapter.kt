@@ -19,7 +19,7 @@ class BlogAdapter(private val onBlogClicked: (blog: Blog) -> Unit) :
     private lateinit var blog: Blog
     private lateinit var binding: ItemBlogBinding
 
-    fun setItems(items: ArrayList<Blog>) {
+    fun setItems(items: List<Blog>) {
         this.items.clear()
         this.items.addAll(items)
         notifyDataSetChanged()
