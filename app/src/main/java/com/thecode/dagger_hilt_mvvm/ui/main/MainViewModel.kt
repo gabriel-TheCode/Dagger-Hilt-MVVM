@@ -1,4 +1,4 @@
-package com.thecode.dagger_hilt_mvvm.ui
+package com.thecode.dagger_hilt_mvvm.ui.main
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
