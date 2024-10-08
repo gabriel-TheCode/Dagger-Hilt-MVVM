@@ -6,20 +6,18 @@ import com.thecode.dagger_hilt_mvvm.model.Blog
 import com.thecode.dagger_hilt_mvvm.network.BlogApi
 import com.thecode.dagger_hilt_mvvm.network.BlogMapper
 import com.thecode.dagger_hilt_mvvm.util.DataState
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import javax.inject.Inject
 
-class MainRepository
-constructor(
+class MainRepository @Inject constructor(
     private val blogDao: BlogDao,
     private val blogApi: BlogApi,
     private val cacheMapper: CacheMapper,
     private val blogMapper: BlogMapper
 ) {
-    suspend fun getBlog(): Flow<DataState<List<Blog>>> = flow {
+    fun getBlog(): Flow<DataState<List<Blog>>> = flow {
         emit(DataState.Loading)
-        delay(1000)
         try {
             val networkBlogs = blogApi.get()
             val blogs = blogMapper.mapFromEntityList(networkBlogs)

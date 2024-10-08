@@ -4,9 +4,7 @@ import com.thecode.dagger_hilt_mvvm.model.Blog
 import com.thecode.dagger_hilt_mvvm.util.EntityMapper
 import javax.inject.Inject
 
-class BlogMapper
-@Inject
-constructor() : EntityMapper<BlogObjectResponse, Blog> {
+class BlogMapper @Inject constructor() : EntityMapper<BlogObjectResponse, Blog> {
     override fun mapFromEntity(entity: BlogObjectResponse): Blog {
         return Blog(
             id = entity.id,
