@@ -6,42 +6,46 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.thecode.dagger_hilt_mvvm.R
+import com.thecode.dagger_hilt_mvvm.databinding.ActivityMainBinding
 import com.thecode.dagger_hilt_mvvm.model.Blog
 import com.thecode.dagger_hilt_mvvm.util.DataState
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 
-@ExperimentalCoroutinesApi
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity(), BlogAdapter.BlogItemListener {
+class MainActivity : AppCompatActivity() {
     private val viewModel: MainViewModel by viewModels()
     private lateinit var adapter: BlogAdapter
+    private lateinit var binding: ActivityMainBinding
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+
+        binding = ActivityMainBinding.inflate(layoutInflater)
         setupRecyclerView()
         subscribeObservers()
         viewModel.setStateEvent(MainStateEvent.GetBlogEvents)
 
-        swipeRefreshLayout.setOnRefreshListener {
+        binding.swipeRefreshLayout.setOnRefreshListener {
             viewModel.setStateEvent(MainStateEvent.GetBlogEvents)
         }
+
+        setContentView(binding.root)
 
     }
 
     private fun subscribeObservers() {
         viewModel.dataState.observe(this, Observer { dataState ->
             when (dataState) {
-                is DataState.Success<List<Blog>> -> {
+                is DataState.Success -> {
                     displayLoading(false)
                     populateRecyclerView(dataState.data)
                 }
+
                 is DataState.Loading -> {
                     displayLoading(true)
                 }
+
                 is DataState.Error -> {
                     displayLoading(false)
                     displayError(dataState.exception.message)
@@ -53,14 +57,14 @@ class MainActivity : AppCompatActivity(), BlogAdapter.BlogItemListener {
 
     private fun displayError(message: String?) {
         if (message.isNullOrEmpty()) {
-            Toast.makeText(this, message, Toast.LENGTH_LONG).show()
-        } else {
             Toast.makeText(this, "Unknown error", Toast.LENGTH_LONG).show()
+        } else {
+            Toast.makeText(this, message, Toast.LENGTH_LONG).show()
         }
     }
 
     private fun displayLoading(isLoading: Boolean) {
-        swipeRefreshLayout.isRefreshing = isLoading
+        binding.swipeRefreshLayout.isRefreshing = isLoading
     }
 
     private fun populateRecyclerView(blogs: List<Blog>) {
@@ -68,13 +72,10 @@ class MainActivity : AppCompatActivity(), BlogAdapter.BlogItemListener {
     }
 
     private fun setupRecyclerView() {
-        adapter = BlogAdapter(this)
-        blog_recyclerview.layoutManager = LinearLayoutManager(this)
-        blog_recyclerview.adapter = adapter
+        adapter = BlogAdapter(onBlogClicked = {
+            Toast.makeText(this, it.title, Toast.LENGTH_SHORT).show()
+        })
+        binding.blogRecyclerview.layoutManager = LinearLayoutManager(this)
+        binding.blogRecyclerview.adapter = adapter
     }
-
-    override fun onClickedBlog(blogTitle: CharSequence) {
-        Toast.makeText(this, blogTitle, Toast.LENGTH_SHORT).show()
-    }
-
 }

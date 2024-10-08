@@ -1,20 +1,21 @@
 package com.thecode.dagger_hilt_mvvm.ui
 
-import androidx.hilt.Assisted
-import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.thecode.dagger_hilt_mvvm.model.Blog
 import com.thecode.dagger_hilt_mvvm.repository.MainRepository
 import com.thecode.dagger_hilt_mvvm.util.DataState
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MainViewModel
-@ViewModelInject
-constructor(
-    private val mainRepository: MainRepository,
-    @Assisted private val savedStateHandle: SavedStateHandle
+@HiltViewModel
+class MainViewModel @Inject constructor(
+    private val mainRepository: MainRepository
 ) : ViewModel() {
     private val _dataState: MutableLiveData<DataState<List<Blog>>> = MutableLiveData()
 
@@ -32,9 +33,7 @@ constructor(
                         .launchIn(viewModelScope)
                 }
 
-                is MainStateEvent.None -> {
-                    // No action
-                }
+                is MainStateEvent.None -> Unit
             }
         }
     }
@@ -42,7 +41,7 @@ constructor(
 
 
 sealed class MainStateEvent {
-    object GetBlogEvents : MainStateEvent()
-    object None : MainStateEvent()
+    data object GetBlogEvents : MainStateEvent()
+    data object None : MainStateEvent()
 }
 
