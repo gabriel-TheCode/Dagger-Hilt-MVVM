@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Dagger Hilt MVVM</string>
+    <string name="blog_details">Blog Details</string>
 </resources>

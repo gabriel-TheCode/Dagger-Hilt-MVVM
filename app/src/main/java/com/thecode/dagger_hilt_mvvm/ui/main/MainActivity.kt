@@ -1,5 +1,6 @@
-package com.thecode.dagger_hilt_mvvm.ui
+package com.thecode.dagger_hilt_mvvm.ui.main
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -7,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.thecode.dagger_hilt_mvvm.databinding.ActivityMainBinding
 import com.thecode.dagger_hilt_mvvm.model.Blog
+import com.thecode.dagger_hilt_mvvm.ui.details.BlogDetailsActivity
+import com.thecode.dagger_hilt_mvvm.ui.main.MainActivity.Companion.BLOG_UI_MODEL
 import com.thecode.dagger_hilt_mvvm.util.DataState
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -71,9 +74,19 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupRecyclerView() {
         adapter = BlogAdapter(onBlogClicked = {
-            Toast.makeText(this, it.title, Toast.LENGTH_SHORT).show()
+            openBlogDetails(it)
         })
         binding.blogRecyclerview.layoutManager = LinearLayoutManager(this)
         binding.blogRecyclerview.adapter = adapter
+    }
+
+    private fun openBlogDetails(blog: Blog) {
+        val intent = Intent(this, BlogDetailsActivity::class.java)
+        intent.putExtra(BLOG_UI_MODEL, blog)
+        this.startActivity(intent)
+    }
+
+    object Companion {
+        const val BLOG_UI_MODEL = "PHOTO_UI_MODEL"
     }
 }
